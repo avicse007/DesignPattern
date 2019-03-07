@@ -1,0 +1,55 @@
+Creational Design patterns abstract the process of object creation 
+
+Builder Pattern 
+==============
+
+1. The main purpose of the builder pattern is to avoid more complex 
+constructor 
+
+2. To use builder pattern create an interface which contains 
+the setters of all generic parameter of a complex constructor.
+And also a build method that return the object of complex constructor
+
+3. Now the Builder Class should implement this interface and provides
+the implementation to these setters. Note that each setter should 
+return the type Builder Interface and the build method that returns
+the complex constructor class 
+
+public Builder setAge(int age)
+{
+	this.age = age;
+	return this;
+}
+
+public BedRoom build() {
+	new BedRoom(complex parameter list)
+}
+
+
+4. Now create a director class that uses the builder class 
+public class BedRoomDirector {
+
+	public BedRoom createBedRoom(BedRoomBuilder builder) {
+		builder.setDouble(true);
+		builder.setFloorNumber(2);
+		builder.setHeight(19);
+		builder.setNumberOfDoors(2);
+		builder.setNumberOfWindows(4);
+		builder.setSuite(false);
+		builder.setWallColor("White");
+		builder.setWidth(20);
+		return builder.build();
+	}
+
+}
+5. In main class 
+	public static void main(String[] args) {
+		BedRoomDirector director = new BedRoomDirector();
+		BedRoomBuilder builder = new BedRoomBuilder();
+		BedRoom bedRoom = director.createBedRoom(builder);
+		System.out.println(bedRoom);
+	}	
+}
+
+
+ 
